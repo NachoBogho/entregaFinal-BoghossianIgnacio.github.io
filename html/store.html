@@ -30,8 +30,8 @@
                     <li class="navItem"><a href="">Store</a></li>
                     <li class="navItem"><a href="">About</a></li>
                     <li class="navItem"><a href="">Sign In</a></li>
-                    <li class="navItem"><button id="boton-carrito"><span id="contadorCarrito"></span><i class="fa-solid fa-cart-shopping"></i></button></li>
-                    <li class="navItem responsiveNav"><a href=""><i class="fa-solid fa-user"></i></a></li>
+                    <li class="navItem"><button id="boton-carrito" class="botonHeader"><span id="contadorCarrito"></span><i class="fa-solid fa-cart-shopping fondoItem"></i></button></li>
+                    <li class="navItem"><button id="openModalBtn" class="botonHeader"><i class="fa-solid fa-solid fa-user fondoItem"></i></button></li>
                     <div class="bars__menu">
                         <span class="line1__bars-menu"></span>
                         <span class="line2__bars-menu"></span>
@@ -61,7 +61,22 @@
     <section id="contenedorProductos"></section>
 </main>
 
+<!-- Register -->
+<button id="openModalBtn">Registrarse</button>
 
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Register</h2>
+    <form id="registrationForm" class="formConfig">
+      <input type="text" placeholder= "  UserName" id="username" required>
+      <input type="email" placeholder= "  Email" id="email" required>
+      <input type="date" class="marginDate" id="birthday" required>
+      <input type="password" placeholder= "  Create a password" id="password" required>
+      <input type="submit" value="Registrarse" class="registerConfig">
+    </form>
+  </div>
+</div>
 
     <!-- carrito -->
 <div class="modal-contenedor">

@@ -1,3 +1,5 @@
+/* Cart */
+
 const contenedorProductos = document.getElementById('contenedorProductos');
 
 const contenedorCarrito = document.getElementById('carrito-contenedor')
@@ -77,3 +79,41 @@ const actualizarCarrito = () => {
 
     precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.cantidad * prod.precio, 0)
 }
+
+
+/* Register */
+
+document.addEventListener("DOMContentLoaded", function() {
+    let openModalBtn = document.getElementById("openModalBtn");
+    let modal = document.getElementById("myModal");
+    let closeButton = document.getElementsByClassName("close")[0];
+    let registrationForm = document.getElementById("registrationForm");
+  
+    openModalBtn.onclick = function() {
+      modal.style.display = "block";
+    };
+  
+    closeButton.onclick = function() {
+      modal.style.display = "none";
+    };
+  
+    registrationForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+      let usernameInput = document.getElementById("username");
+      let emailInput = document.getElementById("email");
+      let birthdayInput = document.getElementById("birthday");
+      let passwordInput = document.getElementById("password");
+  
+      const userData = {
+        username: usernameInput.value,
+        email: emailInput.value,
+        birthday: birthdayInput.value,
+        password: passwordInput.value
+      };
+  
+      console.log(userData);
+  
+      modal.style.display = "none";
+    });
+  });
+  
