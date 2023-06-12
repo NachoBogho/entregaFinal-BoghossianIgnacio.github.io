@@ -12,14 +12,9 @@ const cantidad = document.getElementById('cantidad')
 
 const precioTotal = document.getElementById('precioTotal')
 
-let carrito = []
+let carrito = JSON.parse(localStorage.getItem('carrito')) || []
 
-document.addEventListener('DOMContentLoaded',() => {
-  if (localStorage.getItem('carrito')){
-    carrito = JSON.parse(localStorage.getItem('carrito'))
-    actualizarCarrito()
-  }
-})
+
 
 botonVaciar.addEventListener('click', () => {
     carrito.length = 0
@@ -49,24 +44,25 @@ stockProductos.forEach((producto) =>{
    })
 
    const agregarAlCarrito = (prodId) => {
-
-    const existe = carrito.some(prod => prod.id === prodId)
-       if (existe){
-          const prod = carrito.map(prod => {
-            if (prod.id === prodId){
-              prod.cantidad++
-            }
-          })
-       } else {
-
-       
-
     const item = stockProductos.find((prod) => prod.id === prodId)
-    carrito.push(item)
-    console.log(carrito)
-}
-    actualizarCarrito()
-}
+    const existe = carrito.find(prod => prod.id === prodId)
+          if (existe) {
+            existe.cantidad++
+            actualizarCarrito()
+          } else {
+            const itemAAgregar ={
+              id:item.id,
+              imagen:item.img,
+              nombre:item.nombre,
+              precio:item.precio,
+              cantidad: 1,
+              descripcion:item.descripcion,
+             }
+             carrito.push(itemAAgregar)
+             console.log(carrito)
+          }
+            actualizarCarrito()
+          }
 
 const eliminarDelCarrito = (prodId) =>{
     const item = carrito.find((prod) => prod.id === prodId)
@@ -91,9 +87,9 @@ const actualizarCarrito = () => {
 
         contenedorCarrito.appendChild(div)
         
-        localStorage.setItem('carrito', JSON.stringify(carrito))
-        
     })
+   
+    localStorage.setItem('carrito', JSON.stringify(carrito))
 
     contadorCarrito.innerText = carrito.length
 
