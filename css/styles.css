@@ -1195,6 +1195,11 @@ color: #de600c;
     max-height: 16vw;
 
 }
+
+#boton-carrito:hover{
+    background-color: #de600c;
+
+}
 .botonAgregar2{
     font-size: .8vw;
     background-color: none;
@@ -1254,8 +1259,7 @@ color: #de600c;
     border-radius: 1vw;
     height: 3vw;
     width: 80%;
-    border: solid 1px #de600c;
-    color: #ffffff;
+    border: solid 1px #de600c; 
     background-color: #15141a;
   }
 

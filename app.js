@@ -14,6 +14,12 @@ const precioTotal = document.getElementById('precioTotal')
 
 let carrito = []
 
+document.addEventListener('DOMContentLoaded',() => {
+  if (localStorage.getItem('carrito')){
+    carrito = JSON.parse(localStorage.getItem('carrito'))
+    actualizarCarrito()
+  }
+})
 
 botonVaciar.addEventListener('click', () => {
     carrito.length = 0
@@ -43,10 +49,23 @@ stockProductos.forEach((producto) =>{
    })
 
    const agregarAlCarrito = (prodId) => {
+
+    const existe = carrito.some(prod => prod.id === prodId)
+       if (existe){
+          const prod = carrito.map(prod => {
+            if (prod.id === prodId){
+              prod.cantidad++
+            }
+          })
+       } else {
+
+       
+
     const item = stockProductos.find((prod) => prod.id === prodId)
     carrito.push(item)
+    console.log(carrito)
+}
     actualizarCarrito()
-    console.log(carrito) 
 }
 
 const eliminarDelCarrito = (prodId) =>{
@@ -73,6 +92,7 @@ const actualizarCarrito = () => {
         contenedorCarrito.appendChild(div)
         
         localStorage.setItem('carrito', JSON.stringify(carrito))
+        
     })
 
     contadorCarrito.innerText = carrito.length
@@ -117,3 +137,16 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
   
+  var savedData = localStorage.getItem("userData");
+
+  if (savedData) {
+    var userData = JSON.parse(savedData);
+  
+    // Utilizar los datos guardados
+    console.log(userData.username);
+    console.log(userData.email);
+    console.log(userData.birthday);
+    console.log(userData.password);
+  }
+
+ 

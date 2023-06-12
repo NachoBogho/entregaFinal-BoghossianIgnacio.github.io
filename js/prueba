@@ -45,3 +45,53 @@ function animateBars(){
     line3__bars.classList.toggle("activeline3__bars-menu");
 }
  */
+
+
+d/* ocument.addEventListener("DOMContentLoaded", function() {
+    let openModalBtn = document.getElementById("openModalBtn");
+    let modal = document.getElementById("myModal");
+    let closeButton = document.getElementsByClassName("close")[0];
+    let registrationForm = document.getElementById("registrationForm");
+  
+    openModalBtn.onclick = function() {
+      modal.style.display = "block";
+    };
+  
+    closeButton.onclick = function() {
+      modal.style.display = "none";
+    };
+  
+    registrationForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+      let usernameInput = document.getElementById("username");
+      let emailInput = document.getElementById("email");
+      let birthdayInput = document.getElementById("birthday");
+      let passwordInput = document.getElementById("password");
+  
+      let userData = {
+        username: usernameInput.value,
+        email: emailInput.value,
+        birthday: birthdayInput.value,
+        password: passwordInput.value
+      };
+  
+      // Guardar los datos en localStorage
+      localStorage.setItem("userData", JSON.stringify(data.json));
+
+      console.log(userData);
+  
+      modal.style.display = "none";
+    });
+  });
+
+  let savedData = localStorage.getItem("userData");
+
+if (savedData) {
+  let userData = JSON.parse(savedData);
+
+  // Utilizar los datos guardados
+  console.log(userData.username);
+  console.log(userData.email);
+  console.log(userData.birthday);
+  console.log(userData.password);
+} */
