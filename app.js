@@ -60,7 +60,7 @@ const mostrarCartas = async() =>{
       fetch('data.json')
           .then(stockProductos => stockProductos.json())
           .then( item => {
-              item.find((prod) => prod.id === prodId) })
+              item.find((prod) => prod.id === prodId) 
       const existe = carrito.find(prod => prod.id === prodId)        
       if (existe) {
           existe.cantidad++
@@ -77,7 +77,9 @@ const mostrarCartas = async() =>{
            carrito.push(itemAAgregar)
            console.log(carrito)
         }
+        
           actualizarCarrito()
+        })
         }
 
 
@@ -209,6 +211,4 @@ let userData = localStorage.getItem('userData'); // Obtener el valor guardado en
       } else {
         abrirModal();
       }
-    };
-
-  
+    }
