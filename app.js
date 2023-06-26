@@ -12,17 +12,26 @@ const cantidad = document.getElementById('cantidad')
 
 const precioTotal = document.getElementById('precioTotal')
 
+const botonFinalizar = document.getElementById('finalizar-compra')
+
 let carrito = JSON.parse(localStorage.getItem('carrito')) || []
 
 
+/* FUNCION PARA VACIAR EL CARRITO */
 
 botonVaciar.addEventListener('click', () => {
     carrito.length = 0
     actualizarCarrito()
 })
-    
 
-stockProductos.forEach((producto) =>{
+
+/* FUNCION ASINCRONICA CON FETCH PARA MOSTRAR LAS CARTAS QUE ESTAN EN EL ARCHIVO JSON */
+
+const mostrarCartas = async() =>{
+  const respuesta = await fetch ("../data.json")
+  const stock = await respuesta.json()
+
+  stock.forEach((producto) =>{
     const div = document.createElement('div')
     div.classList.add('producto')
     div.innerHTML = ` 
@@ -30,7 +39,7 @@ stockProductos.forEach((producto) =>{
     <h3>${producto.nombre}</h3>
     <p>${producto.descripcion}</p>
     <p class="precioProducto">Precio: <span class="orangeColor fontBold"> ${producto.precio} ETH</span></p>
-    <button id="agregar${producto.id}" class="botonAgregar">Agregar <i class="fas fa-cart-shopping hoverOrange"></i></button>       
+    <div class="botonesCompra" ><button id="agregar${producto.id}" class="botonAgregar fas fa-cart-shopping hoverOrange"> Add Cart</button></div>       
     `
 
     contenedorProductos.appendChild(div);
@@ -42,34 +51,34 @@ stockProductos.forEach((producto) =>{
     })      
         
    })
+  }
 
-   const agregarAlCarrito = (prodId) => {
-    const item = stockProductos.find((prod) => prod.id === prodId)
-    const existe = carrito.find(prod => prod.id === prodId)
-          if (existe) {
-            existe.cantidad++
-            actualizarCarrito()
-          } else {
-            const itemAAgregar ={
-              id:item.id,
-              imagen:item.img,
-              nombre:item.nombre,
-              precio:item.precio,
-              cantidad: 1,
-              descripcion:item.descripcion,
-             }
-             carrito.push(itemAAgregar)
-             console.log(carrito)
-          }
-            actualizarCarrito()
-          }
+    mostrarCartas()
 
-const eliminarDelCarrito = (prodId) =>{
-    const item = carrito.find((prod) => prod.id === prodId)
-    const indice = carrito.indexOf(item)
-    carrito.splice(indice, 1)
-    actualizarCarrito()
-}
+
+    const agregarAlCarrito = (prodId) => {
+      fetch('data.json')
+          .then(stockProductos => stockProductos.json())
+          .then( item => {
+              item.find((prod) => prod.id === prodId) })
+      const existe = carrito.find(prod => prod.id === prodId)        
+      if (existe) {
+          existe.cantidad++
+          actualizarCarrito()
+        } else {
+          const itemAAgregar ={
+            id:item.id,
+            imagen:item.img,
+            nombre:item.nombre,
+            precio:item.precio,
+            cantidad: 1,
+            descripcion:item.descripcion,
+           }
+           carrito.push(itemAAgregar)
+           console.log(carrito)
+        }
+          actualizarCarrito()
+        }
 
 
 const actualizarCarrito = () => {
@@ -133,10 +142,10 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
   
-  var savedData = localStorage.getItem("userData");
+  let savedData = localStorage.getItem("userData");
 
   if (savedData) {
-    var userData = JSON.parse(savedData);
+    let userData = JSON.parse(savedData);
   
     // Utilizar los datos guardados
     console.log(userData.username);
@@ -145,4 +154,34 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log(userData.password);
   }
 
- 
+/* ABRIR CARRITO */
+
+const contenedorModal = document.getElementsByClassName('modal-contenedor')[0]
+
+const botonAbrir = document.getElementById('boton-carrito')
+
+const botonCerrar = document.getElementById('carritoCerrar')
+
+const modalCarrito = document.getElementsByClassName('modal-carrito')[0]
+
+
+botonAbrir.addEventListener('click', ()=>{
+    contenedorModal.classList.toggle('modal-active')
+})
+botonCerrar.addEventListener('click', ()=>{
+    contenedorModal.classList.toggle('modal-active')
+})
+
+contenedorModal.addEventListener('click', (event) =>{
+    contenedorModal.classList.toggle('modal-active')
+
+})
+modalCarrito.addEventListener('click', (event) => {
+    event.stopPropagation() 
+})
+
+
+
+
+
+  

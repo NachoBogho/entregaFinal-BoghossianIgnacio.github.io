@@ -1041,7 +1041,9 @@ color: #de600c;
     font-size: 1vw;
     color: #ffffff;
 }
-
+button:hover{
+    background-color: #de600c;
+}
 .botonAgregar{
     font-size: 1vw;
     background-color: none;
@@ -1052,7 +1054,9 @@ color: #de600c;
     border-radius: .5vw;
     margin-top: .5vw;
     margin-bottom: 1vw;
+    
 }
+
 .botonAgregar:hover{
     background-color: #de600c;
     color: #ffffff;
