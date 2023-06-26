@@ -109,50 +109,56 @@ const actualizarCarrito = () => {
 /* Register */
 
 document.addEventListener("DOMContentLoaded", function() {
-    let openModalBtn = document.getElementById("openModalBtn");
-    let modal = document.getElementById("myModal");
-    let closeButton = document.getElementsByClassName("close")[0];
-    let registrationForm = document.getElementById("registrationForm");
-  
-    openModalBtn.onclick = function() {
-      modal.style.display = "block";
+  let openModalBtn = document.getElementById("openModalBtn");
+  let modal = document.getElementById("myModal");
+  let closeButton = document.getElementsByClassName("close")[0];
+  let registrationForm = document.getElementById("registrationForm");
+  let userNameElement = document.getElementById("user-name");
+
+  openModalBtn.onclick = function() {
+    modal.style.display = "block";
+  };
+
+  closeButton.onclick = function() {
+    modal.style.display = "none";
+  };
+
+  registrationForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    let usernameInput = document.getElementById("username");
+    let emailInput = document.getElementById("email");
+    let birthdayInput = document.getElementById("birthday");
+    let passwordInput = document.getElementById("password");
+
+    let userData = {
+      username: usernameInput.value,
+      email: emailInput.value,
+      birthday: birthdayInput.value,
+      password: passwordInput.value
     };
-  
-    closeButton.onclick = function() {
-      modal.style.display = "none";
-    };
-  
-    registrationForm.addEventListener("submit", function(event) {
-      event.preventDefault();
-      let usernameInput = document.getElementById("username");
-      let emailInput = document.getElementById("email");
-      let birthdayInput = document.getElementById("birthday");
-      let passwordInput = document.getElementById("password");
-  
-      const userData = {
-        username: usernameInput.value,
-        email: emailInput.value,
-        birthday: birthdayInput.value,
-        password: passwordInput.value
-      };
-  
-      console.log(userData);
-  
-      modal.style.display = "none";
-    });
+
+    // Guardar los datos en localStorage
+    localStorage.setItem("userData", JSON.stringify(userData));
+    
+    // Mostrar el nombre en el HTML
+    userNameElement.textContent = userData.username;
+
+    modal.style.display = "none";
   });
-  
+
+  // Obtener los datos guardados en localStorage
   let savedData = localStorage.getItem("userData");
 
   if (savedData) {
     let userData = JSON.parse(savedData);
-  
-    // Utilizar los datos guardados
-    console.log(userData.username);
-    console.log(userData.email);
-    console.log(userData.birthday);
-    console.log(userData.password);
+
+    // Mostrar el nombre en el HTML
+    userNameElement.textContent = userData.username;
   }
+});
+
+
+
 
 /* ABRIR CARRITO */
 
@@ -182,6 +188,27 @@ modalCarrito.addEventListener('click', (event) => {
 
 
 
+let userData = localStorage.getItem('userData'); // Obtener el valor guardado en localStorage
 
+    // Función para abrir la página de pago en otra pestaña
+    function abrirPaginaDePago() {
+      window.open('pagina-de-pago.html', '_blank');
+    }
+
+    // Función para abrir el modal
+    openModalBtn.onclick = function() {
+      modal.style.display = "block";
+    };
+
+    // Asignar el comportamiento al botón de Finalizar Compra
+    let finalizarCompraBtn = document.getElementById('finalizar-compra');
+
+    finalizarCompraBtn.onclick = function() {
+      if (userData) {
+        abrirPaginaDePago();
+      } else {
+        abrirModal();
+      }
+    };
 
   
