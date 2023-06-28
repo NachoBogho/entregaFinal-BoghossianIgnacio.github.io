@@ -1,5 +1,3 @@
-/* Cart */
-
 const contenedorProductos = document.getElementById('contenedorProductos');
 
 const contenedorCarrito = document.getElementById('carrito-contenedor')
@@ -14,18 +12,6 @@ const precioTotal = document.getElementById('precioTotal')
 
 const botonFinalizar = document.getElementById('finalizar-compra')
 
-let carrito = JSON.parse(localStorage.getItem('carrito')) || []
-
-
-/* FUNCION PARA VACIAR EL CARRITO */
-
-botonVaciar.addEventListener('click', () => {
-    carrito.length = 0
-    actualizarCarrito()
-})
-
-/* ABRIR CARRITO */
-
 const contenedorModal = document.getElementsByClassName('modal-contenedor')[0]
 
 const botonAbrir = document.getElementById('boton-carrito')
@@ -33,6 +19,9 @@ const botonAbrir = document.getElementById('boton-carrito')
 const botonCerrar = document.getElementById('carritoCerrar')
 
 const modalCarrito = document.getElementsByClassName('modal-carrito')[0]
+
+let carrito = JSON.parse(localStorage.getItem('carrito')) || []
+
 
 
 botonAbrir.addEventListener('click', ()=>{
@@ -64,7 +53,7 @@ const mostrarCartas = async() =>{
     <h3>${producto.nombre}</h3>
     <p>${producto.descripcion}</p>
     <p class="precioProducto">Precio: <span class="orangeColor fontBold"> ${producto.precio} ETH</span></p>
-    <div class="botonesCompra" ><button id="agregar${producto.id}" class="botonAgregar fas fa-cart-shopping hoverOrange"> Add Cart</button></div>       
+    <div class="botonesCompra"><button id="agregar${producto.id}" class="botonAgregar fas fa-cart-shopping hoverOrange"> Add Cart</button></div>       
     `
 
     contenedorProductos.appendChild(div);
@@ -73,12 +62,31 @@ const mostrarCartas = async() =>{
 
     boton.addEventListener('click', () => {
         agregarAlCarrito(producto.id)
+
+        Toastify({
+          text: "Successfully Added  ",
+          duration: 800,
+          className:"libreriaAgregar",
+          backgroundColor:"#de600c",
+          stopOnFocus: true, // Prevents dismissing of toast on hover
+          newWindow: true,
+          close: true,
+          gravity: "top", // `top` or `bottom`
+          position: "right", // `left`, `center` or `right`
+          style: {
+            color: "#fffff",
+            
+          },
+          onClick: function(){} // Callback after click
+        }).showToast();
     })      
         
    })
   }
 
     mostrarCartas()
+
+
 
     const eliminarDelCarrito = (prodId) =>{
       const item = carrito.find((prod) => prod.id === prodId)
@@ -87,66 +95,65 @@ const mostrarCartas = async() =>{
       actualizarCarrito()
   }
 
-    const agregarAlCarrito = (prodId) => {
-      fetch("../data.json")
-          .then(stockProductos => stockProductos.json())
-          .then( item => {
-              item.find((prod) => prod.id === prodId) 
-      const existe = carrito.find(prod => prod.id === prodId)        
-      if (existe) {
-          existe.cantidad++
-          actualizarCarrito()
+  const agregarAlCarrito = (prodId) => {
+    fetch("../data.json")
+      .then((stockProductos) => stockProductos.json())
+      .then((item) => {
+        const producto = item.find((prod) => prod.id === prodId);
+        const existe = carrito.find((prod) => prod.id === prodId);
+        if (existe) {
+          existe.cantidad++;
+          actualizarCarrito();
         } else {
-          const itemAAgregar ={
-            id:item.id,
-            imagen:item.img,
-            nombre:item.nombre,
-            precio:item.precio,
+          const itemAAgregar = {
+            id: producto.id,
+            imagen: producto.img,
+            nombre: producto.nombre,
+            precio: producto.precio,
             cantidad: 1,
-            descripcion:item.descripcion,
-           }
-           carrito.push(itemAAgregar)
-           console.log(carrito)
+            descripcion: producto.descripcion,
+          };
+          carrito.push(itemAAgregar);
+          console.log(carrito);
         }
+  
+        actualizarCarrito();
+      });
+  };
+ 
         
-          actualizarCarrito()
-        })
-        }
+  const actualizarCarrito = () => {
+    contenedorCarrito.innerHTML = ""
+    carrito.forEach((prod) =>{
+        const div= document.createElement('div')
+        div.className=('productoEnCarrito')
+        div.innerHTML = `
+        <img src= ${prod.img} alt= "">
+        <p>${prod.nombre}</p>
+        <p>Precio: ${prod.precio} ETH</p>
+        <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
+        <button onclick="eliminarDelCarrito(${prod.id})" class="boton-eliminar"><i class="fas fa-trash-alt"></i></button>
+        `
 
+        contenedorCarrito.appendChild(div)
 
-        const actualizarCarrito = () => {
-          contenedorCarrito.innerHTML = "";
-        
-          fetch("../data.json")
-            .then(stockProductos => stockProductos.json())
-            .then(productos => {
-              productos.forEach(prod => {
-                const div = document.createElement('div');
-                div.className = 'productoEnCarrito';
-                div.innerHTML = `
-                  <p>${prod.nombre}</p>
-                  <p>Precio: ${prod.precio} ETH</p>
-                  <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
-                  <button onclick="eliminarDelCarrito(${prod.id})" class="boton-eliminar">
-                    <i class="fas fa-trash-alt"></i>
-                  </button>
-                `;
-        
-                contenedorCarrito.appendChild(div);
-              });
-        
-              localStorage.setItem('carrito', JSON.stringify(carrito));
-        
-              contadorCarrito.innerText = carrito.length;
-        
-              precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.cantidad * prod.precio, 0);
-            })
-            .catch(error => {
-              console.log("Error al cargar el archivo JSON:", error);
-            });
-        };
-        
+        localStorage.setItem('carrito', JSON.stringify(carrito))
+
+    })
+
+    localStorage.setItem('carrito', JSON.stringify(carrito))
+
+    contadorCarrito.innerText = carrito.length
+
+    precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.cantidad * prod.precio, 0)
+}
               
+/* FUNCION PARA VACIAR EL CARRITO */
+
+botonVaciar.addEventListener('click', () => {
+  carrito.length = 0
+  actualizarCarrito()
+})
 
 
 /* Register */
@@ -198,28 +205,22 @@ document.addEventListener("DOMContentLoaded", function() {
     // Mostrar el nombre en el HTML
     userNameElement.textContent = userData.username;
   }
+
+  // Función para abrir la página de pago en otra pestaña
+  function abrirPaginaDePago() {
+    window.open('pagina-de-pago.html', '_blank');
+  }
+
+  // Asignar el comportamiento al botón de Finalizar Compra
+  let finalizarCompraBtn = document.getElementById('finalizar-compra');
+
+  finalizarCompraBtn.onclick = function() {
+    let userData = localStorage.getItem('userData'); // Obtener el valor guardado en localStorage
+
+    if (userData) {
+      abrirPaginaDePago();
+    } else {
+      openModalBtn.click(); // Llamar al método 'click' para abrir el modal
+    }
+  }
 });
-
-
-let userData = localStorage.getItem('userData'); // Obtener el valor guardado en localStorage
-
-    // Función para abrir la página de pago en otra pestaña
-    function abrirPaginaDePago() {
-      window.open('pagina-de-pago.html', '_blank');
-    }
-
-    // Función para abrir el modal
-    openModalBtn.onclick = function() {
-      modal.style.display = "block";
-    };
-
-    // Asignar el comportamiento al botón de Finalizar Compra
-    let finalizarCompraBtn = document.getElementById('finalizar-compra');
-
-    finalizarCompraBtn.onclick = function() {
-      if (userData) {
-        abrirPaginaDePago();
-      } else {
-        abrirModal();
-      }
-    }

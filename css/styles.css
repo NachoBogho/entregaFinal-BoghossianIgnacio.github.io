@@ -1041,9 +1041,7 @@ color: #de600c;
     font-size: 1vw;
     color: #ffffff;
 }
-button:hover{
-    background-color: #de600c;
-}
+
 .botonAgregar{
     font-size: 1vw;
     background-color: none;
@@ -1125,6 +1123,10 @@ button:hover{
     padding-top: 10px;
     
 }
+.productoEnCarrito img {
+    width: 200px;
+
+}
 
 .productoEnCarrito {
     color: #ffffff;
@@ -1135,9 +1137,7 @@ button:hover{
     justify-content: space-between;
     
 }
-.productoEnCarrito:hover {
-    border-left: 5px solid #de600c;
-}
+
 
 .boton-eliminar {
     background-color: #15141a;
@@ -1146,12 +1146,7 @@ button:hover{
     font-size: 1vw;
 }
 
-.boton-eliminar:hover {
-    cursor: pointer;
-}
-.boton-eliminar:focus {
-    outline: none;
-}
+
 .precioProducto{
     color: #ffffff;
     margin-bottom: 1vw;
@@ -1282,7 +1277,42 @@ button:hover{
     cursor: pointer;
   }
 
-.registerConfig:hover{
-    background-color: #de600c;
-    color: #ffffff;
-}
+
+
+/* SLIDER DE METODOS DE PAGO */
+
+.carrusel {
+    height: 1vw;
+    display: flex;
+    align-items: center;
+  }
+  
+  .carrusel-items {
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding: 3vw;
+  }
+  
+  .carrusel-item {
+    min-width: 15vw;
+    max-width: 15vw;
+    height: 5vw;
+    
+  }
+  
+  .carrusel-item img {
+    opacity: 0.5;
+    width: 4vw;
+    height: 4vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+  }
+  
+  .libreriaAgregar{
+    font-family:'Montserrat', sans-serif;
+    margin-top: 5vw;
+    
+  }
