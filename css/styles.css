@@ -74,6 +74,10 @@ header.headerInfo{
     color: white;
     
 }
+.tamañoLogo{
+    font-size: 300px;
+
+}
   
 .navList{
     display: flex;
@@ -992,7 +996,7 @@ color: #de600c;
 .storeGrid{
     background-color: #15141a;
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 24% 76%;
     grid-template-rows: 100%; 
 
 }
@@ -1009,8 +1013,14 @@ color: #de600c;
     font-size: 2vw;
     color: #ffffff;
     font-family: 'Montserrat', sans-serif;
+    margin-left: 2vw;
 }
 
+.filterListOrder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .filterListItem{
     width: 15vw;
     height: 5vw;
@@ -1282,6 +1292,15 @@ color: #de600c;
     background-color: #15141a;
   }
 
+  .registerConfig{
+    color: #ffffff;
+
+  }
+  .registerConfig:hover{
+    background-color: #de600c;
+
+  }
+
   .close {
     color: #de600c;
     float: right;
@@ -1337,3 +1356,87 @@ color: #de600c;
     
     
   }
+
+/* FILTRADO */
+
+.filterOrden{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.filterBox{
+    width: 50%;
+
+}
+
+
+.filtradoTipo {
+    color: #ffffff;
+    font-family:'Montserrat', sans-serif;
+    font-size: 1vw;
+    margin-bottom: 2vw;
+    margin-top: 1vw;
+    margin-left: 1vw;
+    display: flex;
+}
+.inputFill{
+    border: solid #de600c 0.1vw ;
+    font-weight: bold;  
+    border-radius: 1vw;
+    margin-left: -0.3vw;
+    margin-bottom: 2vw;
+    height: 3vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .9vw;
+    width: 9vw;
+    font-family:'Montserrat', sans-serif;
+}
+.inputFill::placeholder{
+    color: #ffffff;
+    font-family:'Montserrat', sans-serif;
+    font-size: .8   vw;
+    display: flex;
+    opacity: 0.8;
+    align-self: center;
+    padding-left: 1.3vw;
+}
+
+.botonFiltro{
+    color: #ffffff;
+    border-radius: 1vw;
+    border: solid #de600c 0.1vw ;
+    height: 3.3vw;
+    width: 15vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 3vw;
+    font-family:'Montserrat', sans-serif;
+}
+.botonFiltro:hover{
+    background-color: #de600c;
+}
+
+.lineaSepara{
+    color: #de600c;
+    
+}
+
+.filterListTitle2{
+    font-size: 1.7vw;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 2vw;
+    display: flex;
+}
+.containerMoney{
+    display: flex;
+    font-size: 1vw;
+    font-family:'Montserrat', sans-serif;
+    gap: 1.5vw;
+    justify-content: center;
+    align-items: center;
+}

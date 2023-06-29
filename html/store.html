@@ -23,7 +23,7 @@
 <header class="headerInfo" id="headerId">
         <div class="infoContainer">
             <div class="containerLogo">
-                <a href="../index.html"><span class="orangeColor fontBold">Minted</span> Pixels</a>
+                <a href="../index.html" class="tamañoLogo"><span class="orangeColor fontBold">Minted</span> Pixels</a>
             </div>
             <div class="containerNav">
                 <ul class="navList">
@@ -49,13 +49,28 @@
         <div class="filterList">
             <ul><li class="filterListTitle">Bored <span class="orangeColor fontBold">Ape</span> Yacht</li></ul>
 
-            <ul>
-
-                <li class="filterListItem checkBoxItem">Menor Precio <input type="checkbox"></li>
-                <li class="filterListItem checkBoxItem">Mayor Precio <input type="checkbox"></li>
-                <li class="filterListItem checkBoxItem">Modelo <input type="checkbox"></li>
+            <ul class="filterOrden">
+                <div class="filterBox">
+                    <label class="filtradoTipo" for="filtroPrecioMin">Lower Price:</label>
+                        <input class="inputFill" type="number" id="filtroPrecioMin" placeholder="Enter a value"/>
+                </div>
+                <div>
+                    <label class="filtradoTipo" for="filtroPrecioMax">Higher Price:</label>
+                        <input class="inputFill" type="number" id="filtroPrecioMax" placeholder="Enter a value"/>
+                </div>                 
             </ul>
+            <button id="botonFiltrar" class="botonFiltro">Filtrar</button>
+            <hr class="lineaSepara">
+            <ul><li class="filterListTitle2"> 1 <span class="orangeColor fontBold"> ETH </span> ≅ <span id="result"></span></li></ul>
 
+            <div class="containerMoney">
+                <button class="botonHeader1" onclick="convertToARS()">ARS</button>
+                <button class="botonHeader1" onclick="convertToUSD()">USD</button>
+                <button class="botonHeader1" onclick="convertToEUR()">EUR</button>
+                <button class="botonHeader1" onclick="convertToBRL()">BRL</button>
+
+   
+  </div>
         </div>
     </section>
     <section id="contenedorProductos"></section>
@@ -71,7 +86,7 @@
     <form id="registrationForm" class="formConfig">
       <input type="text" placeholder= "  UserName" id="username" required>
       <input type="email" placeholder= "  Email" id="email" required>
-      <input type="date" class="marginDate" id="birthday" required>
+      <input type="date" placeholder= " mm/dd/yyyy" class="marginDate" id="birthday" required>
       <input type="password" placeholder= "  Create a password" id="password" required>
       <input type="submit" value="Registrarse" class="registerConfig">
       
@@ -88,8 +103,8 @@
         <div id="carrito-contenedor" class="gridCart5"></div>
 
         <p class="precioProducto gridCart4">Precio total: <span id="precioTotal">0</span> ETH</p>
-        <button id="vaciar-carrito" class="botonAgregar2 gridCart3">Vaciar carrito</button>
-        <button id="finalizar-compra" class="botonAgregar2 gridCart6">Finalizar Compra</button>
+        <button id="vaciar-carrito" class="botonAgregar2 gridCart3">Delete All</button>
+        <button id="finalizar-compra" class="botonAgregar2 gridCart6">Go to Pay</button>
     </div>
 </div>
 

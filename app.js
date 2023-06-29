@@ -23,7 +23,6 @@ const modalCarrito = document.getElementsByClassName('modal-carrito')[0]
 let carrito = JSON.parse(localStorage.getItem('carrito')) || []
 
 
-
 botonAbrir.addEventListener('click', ()=>{
     contenedorModal.classList.toggle('modal-active')
 })
@@ -53,7 +52,7 @@ const mostrarCartas = async() =>{
     <h3>${producto.nombre}</h3>
     <p>${producto.descripcion}</p>
     <p class="precioProducto">Precio: <span class="orangeColor fontBold"> ${producto.precio} ETH</span></p>
-    <div class="botonesCompra"><button id="agregar${producto.id}" class="botonAgregar fas fa-cart-shopping hoverOrange"> Add Cart</button></div>       
+    <div class="botonesCompra"><button id="agregar${producto.id}" class="botonAgregar hoverOrange"> Add Cart</button></div>       
     `
 
     contenedorProductos.appendChild(div);
@@ -82,6 +81,85 @@ const mostrarCartas = async() =>{
     })      
         
    })
+
+const filtroPrecioMin = document.getElementById('filtroPrecioMin');
+const filtroPrecioMax = document.getElementById('filtroPrecioMax');
+const botonFiltrar = document.getElementById('botonFiltrar');
+
+botonFiltrar.addEventListener('click', filtrarProductos);
+
+function filtrarProductos() {
+  const precioMin = parseFloat(filtroPrecioMin.value);
+  const precioMax = parseFloat(filtroPrecioMax.value);
+
+  // Validar que los valores sean numéricos y el mínimo sea menor al máximo
+  if (isNaN(precioMin) || isNaN(precioMax) || precioMin >= precioMax) {
+    
+    Toastify({
+      text: "Please enter two valid values  ",
+      duration: 4000,
+      className:"libreriaAgregar",
+      backgroundColor:"red",
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      newWindow: true,
+      close: true,
+      gravity: "top", // `top` or `bottom`
+      position: "left", // `left`, `center` or `right`
+      style: {
+        color: "#fffff",
+
+      },
+      onClick: function(){} // Callback after click
+    }).showToast();
+    return;
+  }
+
+  // Limpiar los productos existentes en el contenedor
+  contenedorProductos.innerHTML = '';
+
+  // Filtrar los productos por precio
+  const productosFiltrados = stock.filter(producto => {
+    const precioProducto = parseFloat(producto.precio);
+    return precioProducto >= precioMin && precioProducto <= precioMax;
+  });
+
+  // Mostrar los productos filtrados en pantalla
+  productosFiltrados.forEach(producto => {
+    const div = document.createElement('div');
+    div.classList.add('producto');
+    div.innerHTML = ` 
+      <img src=${producto.img} alt="">
+      <h3>${producto.nombre}</h3>
+      <p>${producto.descripcion}</p>
+      <p class="precioProducto">Precio: <span class="orangeColor fontBold"> ${producto.precio} ETH</span></p>
+      <div class="botonesCompra"><button id="agregar${producto.id}" class="botonAgregar hoverOrange"> Add Cart</button></div>       
+    `;
+
+    contenedorProductos.appendChild(div);
+
+    const boton = document.getElementById(`agregar${producto.id}`);
+
+    boton.addEventListener('click', () => {
+      agregarAlCarrito(producto.id);
+
+      Toastify({
+        text: "Successfully Added  ",
+        duration: 800,
+        className: "libreriaAgregar",
+        backgroundColor: "#de600c",
+        stopOnFocus: true,
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        position: "right",
+        style: {
+          color: "#fffff",
+        },
+        onClick: function () {},
+      }).showToast();
+    });
+  });
+}
   }
 
     mostrarCartas()
@@ -225,4 +303,46 @@ document.addEventListener("DOMContentLoaded", function() {
       openModalBtn.click(); // Llamar al método 'click' para abrir el modal
     }
   }
+  
 });
+
+/* convertidor de eth */
+
+function convertToARS() {
+  const ethAmount = 1;
+  const conversionRate = 473678.91;  // Tasa de conversión de ETH a Pesos Argentinos (ejemplo)
+
+  const result = ethAmount * conversionRate;
+
+  document.getElementById('result').innerHTML =  result + 'ARS';
+}
+
+function convertToUSD() {
+  const ethAmount = 1;
+  const conversionRate = 1857.48;  // Tasa de conversión de ETH a Dólares (ejemplo)
+
+  const result = ethAmount * conversionRate;
+
+  document.getElementById('result').innerHTML = result + 'USD';
+}
+
+function convertToEUR() {
+  const ethAmount = 1;
+  const conversionRate = 1701.92;  // Tasa de conversión de ETH a Euros (ejemplo)
+
+  const result = ethAmount * conversionRate;
+
+  document.getElementById('result').innerHTML =  result + 'EUR' ;
+}
+
+function convertToBRL() {
+  const ethAmount = 1;
+  const conversionRate = 8997.91;  // Tasa de conversión de ETH a Reales (ejemplo)
+
+  const result = ethAmount * conversionRate;
+
+  document.getElementById('result').innerHTML = + result + 'BRL';
+}
+
+
+
