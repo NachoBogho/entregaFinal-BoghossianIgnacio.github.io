@@ -75,7 +75,7 @@ const mostrarCartas = async() =>{
           position: "right", // `left`, `center` or `right`
           style: {
             color: "#fffff",
-            
+
           },
           onClick: function(){} // Callback after click
         }).showToast();
@@ -128,7 +128,7 @@ const mostrarCartas = async() =>{
         const div= document.createElement('div')
         div.className=('productoEnCarrito')
         div.innerHTML = `
-        <img src= ${prod.img} alt= "">
+        <img src= ${prod.imagen} alt= "">
         <p>${prod.nombre}</p>
         <p>Precio: ${prod.precio} ETH</p>
         <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
@@ -218,6 +218,8 @@ document.addEventListener("DOMContentLoaded", function() {
     let userData = localStorage.getItem('userData'); // Obtener el valor guardado en localStorage
 
     if (userData) {
+      carrito.length = 0
+      actualizarCarrito()
       abrirPaginaDePago();
     } else {
       openModalBtn.click(); // Llamar al método 'click' para abrir el modal

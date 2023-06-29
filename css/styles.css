@@ -26,15 +26,29 @@ header.headerInfo{
     margin-left: 2vw;
     margin-right: 2vw;
     
+    
+    
 }
 
-.botonHeader{
+.botonHeader1{
     background-color: #de600c;
     border-radius: 2vw;
     border: none;
     color: #ffffff;
     width: 3.5vw;
-    height: 1.5vw;
+    height: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.botonHeader2{
+    background-color: #de600c;
+    border-radius: 2vw;
+    border: none;
+    color: #ffffff;
+    width: 10vw;
+    height: 2vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,18 +72,18 @@ header.headerInfo{
 .containerLogo a{
     text-decoration: none;
     color: white;
+    
 }
   
 .navList{
     display: flex;
+    align-items: center;
     justify-content: space-around;
     gap: 3vw;
     list-style-type:none;
     
 }
-.navList a :hover{
-   color: #de600c;
-}
+
 .navList a{
    text-decoration: none;
    color: #ffffff;
@@ -81,9 +95,13 @@ header.headerInfo{
     color: #ffffff;
 
 }
-.navItem a :hover{
+.navItemH :hover{
     color:#de600c;
     
+}
+#user-name{
+    background-color: #de600c;
+    padding-left: 0.5vw;
 }
 
 .containerLogo a{
@@ -105,7 +123,7 @@ display: grid;
 width: 100%;
 max-height: 100%;
 grid-template-columns: 50% 10% 25% 10% 5%;
-grid-template-rows: 15% 10% 15% 15%; 
+grid-template-rows: 15% 10% 15% 15% 23% 22%; 
 color: #ffffff;
 
 
@@ -121,6 +139,7 @@ justify-self: center;
 .configImg2{
 width: 15vw;
 height: auto;
+margin-bottom: -2vw;
 }
 
 .gridDisplay1{
@@ -177,6 +196,7 @@ font-family:'Montserrat', sans-serif;
 font-size: 0.8vw;
 text-align: left;
 max-width: 10vw;
+margin-bottom: -1vw;
 }
 .gridDisplay6{
 margin-top: 5vw;
@@ -201,8 +221,8 @@ padding-right: 4vw;
 }
 
 .gridDisplay8{  
-grid-column: 1/4;
-grid-row: 6/7;
+grid-column: 1/6;
+grid-row: 5/6;
 align-self: end;
 }
 
@@ -1124,8 +1144,7 @@ color: #de600c;
     
 }
 .productoEnCarrito img {
-    width: 200px;
-
+    width: 3vw;
 }
 
 .productoEnCarrito {
@@ -1135,6 +1154,7 @@ color: #de600c;
     border-top-left-radius: 3px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     
 }
 
@@ -1314,5 +1334,6 @@ color: #de600c;
   .libreriaAgregar{
     font-family:'Montserrat', sans-serif;
     margin-top: 5vw;
+    
     
   }
