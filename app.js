@@ -18,6 +18,14 @@ const botonAbrir = document.getElementById('boton-carrito')
 
 const botonCerrar = document.getElementById('carritoCerrar')
 
+const filtroPrecioMin = document.getElementById('filtroPrecioMin')
+
+const filtroPrecioMax = document.getElementById('filtroPrecioMax')
+
+const botonFiltrar = document.getElementById('botonFiltrar')
+
+const cerrarSession = document.getElementById('botonCerrarSesion')
+
 const modalCarrito = document.getElementsByClassName('modal-carrito')[0]
 
 let carrito = JSON.parse(localStorage.getItem('carrito')) || []
@@ -52,7 +60,7 @@ const mostrarCartas = async() =>{
     <h3>${producto.nombre}</h3>
     <p>${producto.descripcion}</p>
     <p class="precioProducto">Precio: <span class="orangeColor fontBold"> ${producto.precio} ETH</span></p>
-    <div class="botonesCompra"><button id="agregar${producto.id}" class="botonAgregar hoverOrange"> Add Cart</button></div>       
+    <div class="botonesCompra"><button id="agregar${producto.id}" class="botonAgregar hoverOrange">Add Cart</button></div>       
     `
 
     contenedorProductos.appendChild(div);
@@ -66,7 +74,7 @@ const mostrarCartas = async() =>{
           text: "Successfully Added  ",
           duration: 800,
           className:"libreriaAgregar",
-          backgroundColor:"#de600c",
+          backgroundColor: "#de600c",
           stopOnFocus: true, // Prevents dismissing of toast on hover
           newWindow: true,
           close: true,
@@ -82,10 +90,6 @@ const mostrarCartas = async() =>{
         
    })
 
-const filtroPrecioMin = document.getElementById('filtroPrecioMin');
-const filtroPrecioMax = document.getElementById('filtroPrecioMax');
-const botonFiltrar = document.getElementById('botonFiltrar');
-
 botonFiltrar.addEventListener('click', filtrarProductos);
 
 function filtrarProductos() {
@@ -99,7 +103,7 @@ function filtrarProductos() {
       text: "Please enter two valid values  ",
       duration: 4000,
       className:"libreriaAgregar",
-      backgroundColor:"red",
+      backgroundColor: "red",
       stopOnFocus: true, // Prevents dismissing of toast on hover
       newWindow: true,
       close: true,
@@ -296,15 +300,40 @@ document.addEventListener("DOMContentLoaded", function() {
     let userData = localStorage.getItem('userData'); // Obtener el valor guardado en localStorage
 
     if (userData) {
-      carrito.length = 0
-      actualizarCarrito()
       abrirPaginaDePago();
     } else {
       openModalBtn.click(); // Llamar al método 'click' para abrir el modal
     }
   }
-  
+
+  cerrarSession.addEventListener('click', () => {
+    localStorage.removeItem('userData');
+    location.reload();
+  });
+
 });
+
+
+const mostrarCarritoPago = () => {
+  const mostrarCarrito = document.getElementById('mostrarCarrito');
+  mostrarCarrito.innerHTML = "";
+
+  carrito.forEach((prod) => {
+    const div = document.createElement('div');
+    div.className = 'mostrarCarrito';
+    div.innerHTML = `
+      <img src=${prod.imagen} alt="">
+      <p>${prod.nombre}</p>
+      <p>Precio: ${prod.precio} ETH</p>
+      <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
+      <button onclick="eliminarDelCarrito(${prod.id})" class="boton-eliminar"><i class="fas fa-trash-alt"></i></button>
+    `;
+
+    mostrarCarrito.appendChild(div);
+  });
+
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+};
 
 /* convertidor de eth */
 
