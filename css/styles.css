@@ -1599,4 +1599,48 @@ input[type="date"]::-webkit-inner-spin-button{
     background: #de600c;
   }
 
+  /* carrito en metodos de pago */
+
+.verCarrito{
+    padding-top: 3vw;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family:'Montserrat', sans-serif;
+    color: #ffffff;
+    gap: 5vw;
+    
+}
+
+.tituloCarrito{
+    font-size: 3vw;
+}
+
+
+
+.mostrarCarrito{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-family:'Montserrat', sans-serif;
+    color: #ffffff;
+    box-shadow: 2px 6px 3px 3px rgba(0, 0, 0, 0.3);
+    width: 80vw;
+    height: auto;
+    margin: 3vw;
+    padding: 1vw;
+    
+}
+.mostrarCarrito img{
+    width: 5vw;
+    height: auto;
+}
+#precioTotal2{
+    font-size: 3vw;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+}
+
 

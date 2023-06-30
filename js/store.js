@@ -167,9 +167,7 @@ function filtrarProductos() {
   }
 
     mostrarCartas()
-
-
-
+    
     const eliminarDelCarrito = (prodId) =>{
       const item = carrito.find((prod) => prod.id === prodId)
       const indice = carrito.indexOf(item)
@@ -312,28 +310,6 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
 });
-
-
-const mostrarCarritoPago = () => {
-  const mostrarCarrito = document.getElementById('mostrarCarrito');
-  mostrarCarrito.innerHTML = "";
-
-  carrito.forEach((prod) => {
-    const div = document.createElement('div');
-    div.className = 'mostrarCarrito';
-    div.innerHTML = `
-      <img src=${prod.imagen} alt="">
-      <p>${prod.nombre}</p>
-      <p>Precio: ${prod.precio} ETH</p>
-      <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
-      <button onclick="eliminarDelCarrito(${prod.id})" class="boton-eliminar"><i class="fas fa-trash-alt"></i></button>
-    `;
-
-    mostrarCarrito.appendChild(div);
-  });
-
-  localStorage.setItem('carrito', JSON.stringify(carrito));
-};
 
 /* convertidor de eth */
 
