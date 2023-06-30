@@ -1643,4 +1643,155 @@ input[type="date"]::-webkit-inner-spin-button{
     padding-bottom: 2vw;
 }
 
+.infoAboutContainer{
+    font-family:'Montserrat', sans-serif;
+    padding-top: 5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 5vw;
+}
+.infoAbout{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 20%;
+    
+    
+}
+
+.infoAbout img{
+    width: 25%;
+    border-radius: 0.5vw;
+    height: auto;
+}
+.textAbout{
+    color: #ffffff;
+    font-size: 1.1vw;
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+    width: 40%;
+}
+.textAbout h3{
+    font-size: 2vw;
+}
+
+/* Imagnes galeria */
+
+.containerGalery{
+    
+    padding: 6vw 3vw 3vw 6vw;
+    display:grid;
+    grid-template-columns: repeat(6,1fr);
+    grid-auto-rows:5vw 18vw;
+    grid-gap:1vw;
+    grid-auto-flow: dense;
+}
+
+.gallery-item{
+    width:100%;
+    height:100%;
+    position:relative;
+}
+
+.gallery-item .image{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+.gallery-item .image img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    object-position:50% 50%;
+    cursor:pointer;
+    transition:.5s ease-in-out;
+}
+
+
+.gallery-item:hover .text{
+    opacity:1;
+    animation: move-down .3s linear;
+    padding:1em;
+    width:100%;
+}
+
+.w-1{
+    grid-column: span 1;
+}
+.w-2{
+    grid-column: span 2;
+}
+.w-3{
+    grid-column: span 3;
+}
+.w-4{
+    grid-column: span 4;
+}
+.w-5{
+    grid-column: span 5;
+}
+.w-6{
+    grid-column: span 6;
+}
+
+.h-1{
+    grid-row: span 1;
+}
+.h-2{
+    grid-row: span 2;
+}
+.h-3{
+    grid-row: span 3;
+}
+.h-4{
+    grid-row: span 4;
+}
+.h-5{
+    grid-row: span 5;
+}
+.h-6{
+    grid-row: span 6;
+}
+
+.gallery-item:hover .image img{
+    transform:scale(1.1);
+}
+
+
+@media screen and (max-width:500px){
+    .container{
+        grid-template-columns: repeat(1,1fr);
+    }
+    .w-1,.w-2,.w-3,.w-4,.w-5,.w-6{
+        grid-column:span 1;
+    }
+}
+
+@keyframes move-down{
+
+    0%{
+        top:10%;
+    }
+    50%{
+        top:35%;
+    }
+    100%{
+        top:50%;
+    }
+}
+
+.galeriaFotosTitulo{
+    font-family:'Montserrat', sans-serif;
+    color: #ffffff;
+    font-size: 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2vw;
+    gap: 0.5vw;
+
+}
 
