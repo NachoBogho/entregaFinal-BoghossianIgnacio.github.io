@@ -18,3 +18,28 @@ const stop = () => {
 };
 
 start();
+
+window.addEventListener('DOMContentLoaded', function() {
+  var compraExitosa = localStorage.getItem('compraExitosa');
+  if (compraExitosa === 'true') {
+    
+    Toastify({
+      text: "Successful Purchase  ",
+      duration: 4000,
+      className: "libreriaAgregar",
+      backgroundColor: "green",
+      stopOnFocus: true,
+      newWindow: true,
+      close: true,
+      gravity: "top",
+      position: "center",
+      style: {
+        color: "#fffff",
+      },
+      onClick: function () {},
+    }).showToast();
+
+    localStorage.removeItem('compraExitosa');
+  }
+});
+

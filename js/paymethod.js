@@ -1,6 +1,7 @@
 
 const carritoPago = JSON.parse(localStorage.getItem("carrito"));
-const precioTotal = document.getElementById('precioTotal2'); // Asumiendo que tienes un elemento HTML con el id "precioTotal" para mostrar el total
+const precioTotal = document.getElementById('precioTotal2');
+const BtnFinalizarCompra = document.getElementById('terminarPago');
 
 const mostrarCarritoPago = () => {
   const mostrarCarrito = document.getElementById('mostrarCarrito');
@@ -26,3 +27,18 @@ const mostrarCarritoPago = () => {
 };
 
 mostrarCarritoPago();
+
+BtnFinalizarCompra.addEventListener('click', () => {
+  carritoPago.length = 0;
+  localStorage.setItem('carrito', JSON.stringify(carritoPago));
+  
+    localStorage.setItem('compraExitosa', 'true');
+    window.open('../index.html');
+    window.close();
+  
+
+});
+
+
+
+

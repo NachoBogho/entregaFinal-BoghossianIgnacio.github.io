@@ -288,7 +288,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Función para abrir la página de pago en otra pestaña
   function abrirPaginaDePago() {
-    window.open('pagina-de-pago.html', '_blank');
+    window.open('pagina-de-pago.html', '_self');
   }
 
   // Asignar el comportamiento al botón de Finalizar Compra
